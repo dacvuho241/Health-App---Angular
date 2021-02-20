@@ -1,0 +1,39 @@
+#map{
+    height: 500px;
+    width: 100%;
+    border: 3px solid #31311e;
+    opacity: 1;
+}
+#distance, #calo, #bmr1, #bmr2, #bmr3, #bmr4, #bmr5, #time{ 
+  color:red;
+  font-weight: bold;
+  font-style: italic;
+}
+.icon{
+  background-color: black;
+}
+#notic2, #notic3, #notic4{
+  color: red;
+  font-style: italic;
+}
+
+.head{
+  color: #c7ac14;
+  font-size: 16px;
+}
+#goBack, #warn{
+  color: red;
+  font-style: italic;
+}
+#run{
+  color: #bdbb4b;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+}
+#notic1, #hide1, #hide2, #hide3, #hide4, #hide5, #dis, #ca, #timeRecomendation, #runningCard{
+  color: #c7ac14;
+}
+#card1, #card2, #card3, #card4{
+  opacity: 0.9;
+}

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()"><ion-icon name="close-circle"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="container">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="inputModal">Your Input</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="inputModal">
+      <p>Name: {{name}}</p>
+      <p>Gender: {{gender}}</p>
+      <p>Height: {{height}}</p>
+      <p>Weight: {{weight}}</p>
+      <p id="modalNotif"></p>
+    </ion-card-content>
+  </ion-card>
+  <ion-button  color="warning" (click)="presentLoading()" (click)="dismiss()" style="text-align:center" routerLink="/map" routerDirection="forward">Let's Check</ion-button>
+</ion-content>
+

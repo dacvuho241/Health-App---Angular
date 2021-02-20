@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar style="color: #ffffff;">
+    <ion-title>Back</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-label slot="end">
+      Hi, {{name}}
+    </ion-label>
+    <ion-avatar style="font-size: 40px; padding-top: 10px; padding-right: 10px;" slot="end">
+      <ion-icon name="person-circle"></ion-icon>
+    </ion-avatar>
+    
+      
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- template -->
+  <!-- <ion-card>
+    <img src="./madison.jpg" />
+    <ion-card-header>
+      <ion-card-subtitle>Destination</ion-card-subtitle>
+      <ion-card-title>Madison, WI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    </ion-card-content>
+  </ion-card> -->
+  <!-- template -->
+
+  <!-- CARD 1 -->
+  <ion-card id="card1">
+    <!-- <img style="height: 50px;" src="https://i.ibb.co/KhhN7Fd/welcome.webp" alt="welcome"> -->
+    <ion-card-header>
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title class="head">Welcome {{name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p id="notic1"></p> 
+      <p id="notic2"></p>
+      <p id="notic4">Your BMI: {{fix_bmi}}</p>
+      <p id="notic3"></p>
+    </ion-card-content>
+  </ion-card> 
+  <!-- CARD 1 -->
+
+  <ion-card id="card2">
+    <ion-card-header>
+      <ion-card-title class="head">Your total daily calorie needs: </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p id="hide1"><ion-icon name="walk"></ion-icon> If you are sedentary, you will need: <span id="bmr1">{{fix_bmr1}}</span> cal/day</p>
+      <p id="hide2"><ion-icon name="walk"></ion-icon> If you are lightly active, you will need: <span id="bmr2">{{fix_bmr2}}</span> cal/day</p>
+      <p id="hide3"><ion-icon name="walk"></ion-icon> If you are moderately active, you will need: <span id="bmr3">{{fix_bmr3}}</span> cal/day</p>
+      <p id="hide4"><ion-icon name="walk"></ion-icon> If you are very active, you will need: <span id="bmr4">{{fix_bmr4}}</span> cal/day</p>
+      <p id="hide5"><ion-icon name="walk"></ion-icon> If you are extra active, you will need: <span id="bmr5">{{fix_bmr5}}</span> cal/day</p>
+      <p id="goBack"></p>
+    </ion-card-content>
+  </ion-card> 
+
+  <ion-card>
+    
+  </ion-card>
+
+  <ion-card id="card3">
+    <ion-card-header>
+      <ion-card-title class="head"><ion-icon name="pin"></ion-icon>Click any destination in the Map below. We will calculate the distance you expect to run</ion-card-title>
+    </ion-card-header>
+    <div id="map"></div>
+  </ion-card>
+    <!-- <div id="map"></div> -->
+  
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-title class="head">We will estimate running distance and calories you may consume after you selected the destination on the Map...</ion-card-title>
+      <ion-progress-bar id="bar" type="indeterminate"></ion-progress-bar>
+    </ion-card-header>
+    <ion-card-content>
+      <p id="dis"><ion-icon name="bicycle"></ion-icon> Distance you expect: <span id="distance">...</span> miles </p>
+      <p id="ca"><ion-icon name="restaurant"></ion-icon> Calories burned: <span id="calo">...</span> calo </p>
+      <p id="warn"></p>
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-slides id="card4" #slides> 
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="head">We will estimate running distance and calories you may consume after you select the destination on the Map...</ion-card-title>
+          <ion-progress-bar id="bar" type="indeterminate"></ion-progress-bar>
+        </ion-card-header>
+        <ion-card-content>
+          <p id="dis"><ion-icon name="bicycle"></ion-icon> Distance you expect: <span id="distance">...</span> miles</p>
+          <p id="ca"><ion-icon name="restaurant"></ion-icon> Calories burned: <span id="calo">...</span> calo </p>
+          <p id="warn"></p>
+          <p id="run"><ion-icon name="arrow-undo"></ion-icon>Slide Left To Run</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+      <ion-card-header>
+        <ion-item>
+          <ion-icon color="danger" name="alarm"></ion-icon>
+          <ion-label style="color: #31311e;"> Set Timer (in minute):    </ion-label>
+          <ion-input  style="color: #31311e;" required [(ngModel)]="startDuration" placeholder="type here" type="number"></ion-input>
+        </ion-item>
+        
+      </ion-card-header>
+      <ion-card-content>
+        <ion-spinner  id="spin1" name="dots"></ion-spinner>
+        <ion-icon name="walk-outline" style="font-size: 100px;"></ion-icon>
+        <ion-spinner id="spin2" name="dots"></ion-spinner>
+        <ion-card-title id="time">
+          {{time | async}}
+        </ion-card-title>
+        <ion-card-title id="runningCard">
+          Running with 6.2 mile/hour is good for you. 
+        </ion-card-title>
+        <ion-card-header id="timeRecomendation">
+          We suggest setting timer for: <span id="setTime">... </span> minutes. Then click START and RUN
+        </ion-card-header>
+        <ion-button *ngIf="state ==='stop'" expand="block" color="warning" (click)="startTimer(startDuration)">
+          <ion-label>START</ion-label>
+        </ion-button>
+        <ion-button *ngIf="state ==='start'" expand="block" color="danger" (click)="stopTimer()">
+          <ion-label>STOP</ion-label>
+        </ion-button>
+      </ion-card-content>
+      </ion-card>
+      
+    </ion-slide>
+  </ion-slides>
+  
+  
+  <ion-item>
+    <!-- <ion-avatar slot="start">
+      <img src="https://i.ibb.co/JzHwRR6/image.png" alt="image" border="0">
+    </ion-avatar> -->
+    <ion-label style="text-align: center;">
+      <h2>Final Project CS641</h2>
+      <h3 style="padding: 8px 8px;">Dac Vu Ho</h3>
+      <a style="color: #ffffff;" href="https://www.linkedin.com/in/dacvuho/"> <ion-icon name="logo-linkedin"></ion-icon></a>
+      <a style="margin-left: 10px; color: #ffffff;" href="https://www.instagram.com/vu.2401/"><ion-icon name="logo-instagram"></ion-icon></a>   
+    </ion-label>
+  </ion-item>
+</ion-content>
+
+
+
+
